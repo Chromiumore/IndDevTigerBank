@@ -1,6 +1,6 @@
-package me.chromiumore.repositories;
+package me.chromiumore.tigerbank.repositories;
 
-import me.chromiumore.entities.BankAccount;
+import me.chromiumore.tigerbank.entities.BankAccount;
 import org.springframework.stereotype.Service;
 
 @Service

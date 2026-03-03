@@ -1,4 +1,4 @@
-package me.chromiumore.entities;
+package me.chromiumore.tigerbank.entities;
 
 public abstract class BaseEntity {
     private final int id;

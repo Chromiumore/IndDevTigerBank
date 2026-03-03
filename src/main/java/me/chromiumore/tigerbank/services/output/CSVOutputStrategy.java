@@ -1,6 +1,6 @@
-package me.chromiumore.services.output;
+package me.chromiumore.tigerbank.services.output;
 
-import me.chromiumore.entities.*;
+import me.chromiumore.tigerbank.entities.*;
 import org.springframework.stereotype.Component;
 
 @Component

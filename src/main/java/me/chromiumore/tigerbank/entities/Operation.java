@@ -1,4 +1,4 @@
-package me.chromiumore.entities;
+package me.chromiumore.tigerbank.entities;
 
 import java.time.LocalDate;
 

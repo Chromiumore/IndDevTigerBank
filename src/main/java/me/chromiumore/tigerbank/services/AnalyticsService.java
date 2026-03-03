@@ -1,10 +1,10 @@
-package me.chromiumore.services;
+package me.chromiumore.tigerbank.services;
 
-import me.chromiumore.entities.Category;
-import me.chromiumore.entities.Operation;
-import me.chromiumore.entities.OperationType;
-import me.chromiumore.repositories.CategoryRepository;
-import me.chromiumore.repositories.OperationsRepository;
+import me.chromiumore.tigerbank.entities.Category;
+import me.chromiumore.tigerbank.entities.Operation;
+import me.chromiumore.tigerbank.entities.OperationType;
+import me.chromiumore.tigerbank.repositories.CategoryRepository;
+import me.chromiumore.tigerbank.repositories.OperationsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

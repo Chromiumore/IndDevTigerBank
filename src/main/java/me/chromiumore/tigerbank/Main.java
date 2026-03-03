@@ -1,11 +1,11 @@
-package me.chromiumore;
+package me.chromiumore.tigerbank;
 
-import me.chromiumore.entities.*;
-import me.chromiumore.repositories.AccountRepository;
-import me.chromiumore.repositories.CategoryRepository;
-import me.chromiumore.repositories.OperationsRepository;
-import me.chromiumore.services.AnalyticsService;
-import me.chromiumore.services.ExportService;
+import me.chromiumore.tigerbank.entities.*;
+import me.chromiumore.tigerbank.repositories.AccountRepository;
+import me.chromiumore.tigerbank.repositories.CategoryRepository;
+import me.chromiumore.tigerbank.repositories.OperationsRepository;
+import me.chromiumore.tigerbank.services.AnalyticsService;
+import me.chromiumore.tigerbank.services.ExportService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;

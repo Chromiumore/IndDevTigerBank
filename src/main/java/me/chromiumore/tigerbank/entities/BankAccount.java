@@ -1,4 +1,4 @@
-package me.chromiumore.entities;
+package me.chromiumore.tigerbank.entities;
 
 public class BankAccount extends BaseEntity{
     private static int nextId = 0;
