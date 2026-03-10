@@ -34,8 +34,8 @@ public abstract class OutputStrategy {
         String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
         String actualFileName = (fileName != null) ? fileName : timestamp;
 
-        Path file = Paths.get(actualFileName + fileExtension);
-        Files.write(file, content.getBytes());
-        System.out.println("Файл успешно сохранен: " + file.toAbsolutePath());
+        Path path = Paths.get("./target/" + actualFileName + fileExtension);
+        Files.write(path, content.getBytes());
+        System.out.println("Файл успешно сохранен: " + path.toAbsolutePath());
     }
 }
