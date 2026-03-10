@@ -6,6 +6,7 @@ import me.chromiumore.tigerbank.repositories.OperationsRepository;
 import me.chromiumore.tigerbank.services.output.CSVOutputStrategy;
 import me.chromiumore.tigerbank.services.output.JsonOutputStrategy;
 import me.chromiumore.tigerbank.services.output.OutputStrategy;
+import me.chromiumore.tigerbank.services.output.YamlOutputStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,17 +20,21 @@ public class ExportService {
     private final OperationsRepository operationsRepository;
     private final CSVOutputStrategy csvOutputStrategy;
     private final JsonOutputStrategy jsonOutputStrategy;
+    private final YamlOutputStrategy yamlOutputStrategy;
 
     @Autowired
     public ExportService(AccountRepository accountRepository,
                          CategoryRepository categoryRepository,
                          OperationsRepository operationsRepository,
-                         CSVOutputStrategy csvOutputStrategy, JsonOutputStrategy jsonOutputStrategy) {
+                         CSVOutputStrategy csvOutputStrategy,
+                         JsonOutputStrategy jsonOutputStrategy,
+                         YamlOutputStrategy yamlOutputStrategy) {
         this.accountRepository = accountRepository;
         this.categoryRepository = categoryRepository;
         this.operationsRepository = operationsRepository;
         this.csvOutputStrategy = csvOutputStrategy;
         this.jsonOutputStrategy = jsonOutputStrategy;
+        this.yamlOutputStrategy = yamlOutputStrategy;
     }
 
     public void exportToCsv() throws IOException {
@@ -38,6 +43,10 @@ public class ExportService {
 
     public void exportToJson() throws IOException {
         exportData(jsonOutputStrategy);
+    }
+
+    public void exportToYaml() throws IOException {
+        exportData(yamlOutputStrategy);
     }
 
     private void exportData(OutputStrategy strategy) throws IOException {

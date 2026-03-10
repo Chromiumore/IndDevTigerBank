@@ -119,5 +119,11 @@ public class Main {
         } catch (IOException e) {
             System.out.println("Ошибка записи данных в формате json");
         }
+
+        try {
+            exportService.exportToYaml();
+        } catch (IOException e) {
+            System.out.println("Ошибка записи данных в формате yaml");
+        }
     }
 }
