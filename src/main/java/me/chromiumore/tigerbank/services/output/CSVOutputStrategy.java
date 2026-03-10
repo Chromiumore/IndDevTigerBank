@@ -6,6 +6,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class CSVOutputStrategy extends OutputStrategy {
 
+    public CSVOutputStrategy() {
+        super(".csv");
+    }
+
     @Override
     protected String dataToFormat() {
         StringBuilder sb = new StringBuilder();
@@ -44,10 +48,5 @@ public class CSVOutputStrategy extends OutputStrategy {
         }
 
         return sb.toString();
-    }
-
-    @Override
-    protected String getFileExtension() {
-        return ".csv";
     }
 }

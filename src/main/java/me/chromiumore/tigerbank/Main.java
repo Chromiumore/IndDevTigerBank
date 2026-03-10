@@ -113,5 +113,11 @@ public class Main {
         } catch (IOException e) {
             System.out.println("Ошибка записи данных в формате csv");
         }
+
+        try {
+            exportService.exportToJson();
+        } catch (IOException e) {
+            System.out.println("Ошибка записи данных в формате json");
+        }
     }
 }

@@ -13,6 +13,11 @@ import java.util.Map;
 public abstract class OutputStrategy {
     protected Map<Integer, ? extends BaseEntity> data;
     protected String fileName;
+    protected String fileExtension;
+
+    public OutputStrategy(String fileExtension) {
+        this.fileExtension = fileExtension;
+    }
 
     protected abstract String dataToFormat();
 
@@ -29,10 +34,8 @@ public abstract class OutputStrategy {
         String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
         String actualFileName = (fileName != null) ? fileName : timestamp;
 
-        Path file = Paths.get(actualFileName + getFileExtension());
+        Path file = Paths.get(actualFileName + fileExtension);
         Files.write(file, content.getBytes());
         System.out.println("Файл успешно сохранен: " + file.toAbsolutePath());
     }
-
-    protected abstract String getFileExtension();
 }
