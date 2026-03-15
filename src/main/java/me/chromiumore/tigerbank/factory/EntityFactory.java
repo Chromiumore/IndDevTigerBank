@@ -1,7 +1,8 @@
 package me.chromiumore.tigerbank.factory;
 
-import javax.swing.text.html.parser.Entity;
+import me.chromiumore.tigerbank.domain.BaseEntity;
+import me.chromiumore.tigerbank.domain.param.EntityParam;
 
 public interface EntityFactory {
-    Entity createEntity();
+    BaseEntity createEntity(EntityParam param);
 }

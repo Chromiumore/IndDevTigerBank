@@ -1,4 +1,4 @@
-package me.chromiumore.tigerbank.entity;
+package me.chromiumore.tigerbank.domain;
 
 public enum OperationType {
     INCOME,

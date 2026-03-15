@@ -1,8 +1,8 @@
 package me.chromiumore.tigerbank.service;
 
-import me.chromiumore.tigerbank.entity.Category;
-import me.chromiumore.tigerbank.entity.Operation;
-import me.chromiumore.tigerbank.entity.OperationType;
+import me.chromiumore.tigerbank.domain.Category;
+import me.chromiumore.tigerbank.domain.Operation;
+import me.chromiumore.tigerbank.domain.OperationType;
 import me.chromiumore.tigerbank.repository.CategoryRepository;
 import me.chromiumore.tigerbank.repository.OperationsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
