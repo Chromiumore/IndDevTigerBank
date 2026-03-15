@@ -1,4 +1,4 @@
-package me.chromiumore.tigerbank.entities;
+package me.chromiumore.tigerbank.entitie;
 
 import lombok.Getter;
 import lombok.Setter;

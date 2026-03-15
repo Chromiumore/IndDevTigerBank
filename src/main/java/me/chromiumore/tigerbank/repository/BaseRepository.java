@@ -1,6 +1,6 @@
-package me.chromiumore.tigerbank.repositories;
+package me.chromiumore.tigerbank.repository;
 
-import me.chromiumore.tigerbank.entities.BaseEntity;
+import me.chromiumore.tigerbank.entitie.BaseEntity;
 
 import java.util.HashMap;
 import java.util.Map;

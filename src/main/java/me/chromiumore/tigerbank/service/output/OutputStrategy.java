@@ -1,6 +1,6 @@
-package me.chromiumore.tigerbank.services.output;
+package me.chromiumore.tigerbank.service.output;
 
-import me.chromiumore.tigerbank.entities.BaseEntity;
+import me.chromiumore.tigerbank.entitie.BaseEntity;
 
 import java.io.IOException;
 import java.nio.file.Files;
