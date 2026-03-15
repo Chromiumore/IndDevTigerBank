@@ -3,7 +3,7 @@ package me.chromiumore.tigerbank.service.output;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JSR310Module;
-import me.chromiumore.tigerbank.entitie.BaseEntity;
+import me.chromiumore.tigerbank.entity.BaseEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

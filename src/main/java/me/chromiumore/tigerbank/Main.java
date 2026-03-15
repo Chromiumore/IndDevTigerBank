@@ -1,6 +1,6 @@
 package me.chromiumore.tigerbank;
 
-import me.chromiumore.tigerbank.entitie.*;
+import me.chromiumore.tigerbank.entity.*;
 import me.chromiumore.tigerbank.repository.AccountRepository;
 import me.chromiumore.tigerbank.repository.CategoryRepository;
 import me.chromiumore.tigerbank.repository.OperationsRepository;
