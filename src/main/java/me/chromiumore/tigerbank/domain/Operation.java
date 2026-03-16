@@ -6,11 +6,10 @@ import lombok.Setter;
 import java.time.LocalDate;
 
 public class Operation extends BaseEntity {
-    private static int nextId = 0;
     @Getter @Setter
     private OperationType type;
     @Getter @Setter
-    private int bankAccountId;
+    private BankAccount bankAccount;
     @Getter @Setter
     private double amount;
     @Getter @Setter
@@ -18,15 +17,13 @@ public class Operation extends BaseEntity {
     @Getter @Setter
     private String description;
     @Getter @Setter
-    private int categoryId;
+    private Category category;
 
-    public Operation(OperationType type, int bankAccountId, double amount, int categoryId, String description) {
-        super(nextId);
-        nextId++;
+    public Operation(OperationType type, BankAccount bankAccount, double amount, Category category, String description) {
         this.type = type;
-        this.bankAccountId = bankAccountId;
+        this.bankAccount = bankAccount;
         this.amount = amount;
-        this.categoryId = categoryId;
+        this.category = category;
         this.description = description;
         this.date = LocalDate.now();
     }

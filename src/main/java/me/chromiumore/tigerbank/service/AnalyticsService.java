@@ -1,5 +1,6 @@
 package me.chromiumore.tigerbank.service;
 
+import me.chromiumore.tigerbank.domain.BaseEntity;
 import me.chromiumore.tigerbank.domain.Category;
 import me.chromiumore.tigerbank.domain.Operation;
 import me.chromiumore.tigerbank.domain.OperationType;
@@ -28,7 +29,8 @@ public class AnalyticsService {
         double totalIncome = 0;
         double totalExpense = 0;
 
-        for (Operation operation : operationsRepository.getAll().values()) {
+        for (Map.Entry<Integer, BaseEntity> entry : operationsRepository.getAll().entrySet()) {
+            Operation operation = (Operation) entry.getValue();
             if (!operation.getDate().isBefore(startDate) && !operation.getDate().isAfter(endDate)) {
                 if (operation.getType() == OperationType.INCOME) {
                     totalIncome += operation.getAmount();
@@ -44,12 +46,13 @@ public class AnalyticsService {
     public Map<String, Double> getIncomeByCategory(LocalDate startDate, LocalDate endDate) {
         Map<String, Double> incomeByCategory = new HashMap<>();
 
-        for (Operation operation : operationsRepository.getAll().values()) {
+        for (Map.Entry<Integer, BaseEntity> entry : operationsRepository.getAll().entrySet()) {
+            Operation operation = (Operation) entry.getValue();
             if (operation.getType() == OperationType.INCOME &&
                     !operation.getDate().isBefore(startDate) &&
                     !operation.getDate().isAfter(endDate)) {
 
-                Category category = categoryRepository.get(operation.getCategoryId());
+                Category category = operation.getCategory();
                 if (category != null) {
                     String categoryName = category.getName();
                     incomeByCategory.merge(categoryName, operation.getAmount(), Double::sum);
@@ -63,12 +66,13 @@ public class AnalyticsService {
     public Map<String, Double> getExpenseByCategory(LocalDate startDate, LocalDate endDate) {
         Map<String, Double> expenseByCategory = new HashMap<>();
 
-        for (Operation operation : operationsRepository.getAll().values()) {
+        for (Map.Entry<Integer, BaseEntity> entry : operationsRepository.getAll().entrySet()) {
+            Operation operation = (Operation) entry.getValue();
             if (operation.getType() == OperationType.EXPENSE &&
                     !operation.getDate().isBefore(startDate) &&
                     !operation.getDate().isAfter(endDate)) {
 
-                Category category = categoryRepository.get(operation.getCategoryId());
+                Category category = operation.getCategory();
                 if (category != null) {
                     String categoryName = category.getName();
                     expenseByCategory.merge(categoryName, operation.getAmount(), Double::sum);
@@ -85,7 +89,8 @@ public class AnalyticsService {
         double income = 0;
         double expense = 0;
 
-        for (Operation operation : operationsRepository.getAll().values()) {
+        for (Map.Entry<Integer, BaseEntity> entry : operationsRepository.getAll().entrySet()) {
+            Operation operation = (Operation) entry.getValue();
             if (!operation.getDate().isBefore(startDate) && !operation.getDate().isAfter(endDate)) {
                 if (operation.getType() == OperationType.INCOME) {
                     income += operation.getAmount();

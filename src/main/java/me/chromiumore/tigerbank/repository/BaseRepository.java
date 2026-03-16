@@ -5,27 +5,27 @@ import me.chromiumore.tigerbank.domain.BaseEntity;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class BaseRepository<T extends BaseEntity> {
-    protected Map<Integer, T> storage;
+public abstract class BaseRepository {
+    protected Map<Integer, BaseEntity> storage;
 
     public BaseRepository() {
         storage = new HashMap<>();
     }
 
-    public void add(T entity) {
-        storage.put(entity.getId(), entity);
+    public void add(BaseEntity entity) {
+        storage.put(getId(), entity);
     };
 
-    public T get(int id) {
+    public BaseEntity get(int id) {
         return storage.get(id);
     }
 
-    public Map<Integer, T> getAll() {
+    public Map<Integer, BaseEntity> getAll() {
         return new HashMap<>(storage);
     }
 
-    public void update(T entity) {
-        int id = entity.getId();
+    public void update(BaseEntity entity) {
+        int id = getId();
         storage.replace(id, entity);
     }
 
@@ -36,4 +36,6 @@ public abstract class BaseRepository<T extends BaseEntity> {
     public boolean contains(int id) {
         return storage.containsKey(id);
     }
+
+    protected abstract int getId();
 }

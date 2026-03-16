@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 public abstract class OutputStrategy {
-    protected Map<Integer, ? extends BaseEntity> data;
+    protected Map<Integer, BaseEntity> data;
     protected String fileName;
     protected String fileExtension;
 
@@ -21,7 +21,7 @@ public abstract class OutputStrategy {
 
     protected abstract String dataToFormat();
 
-    public void setData(Map<Integer, ? extends BaseEntity> data) {
+    public void setData(Map<Integer, BaseEntity> data) {
         this.data = data;
     }
 

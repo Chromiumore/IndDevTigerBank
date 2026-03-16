@@ -21,12 +21,10 @@ public class JsonOutputStrategy extends OutputStrategy{
             return "";
         }
 
-        List<BaseEntity> entities = new ArrayList<>(data.values());
-
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JSR310Module());
         try {
-            return objectMapper.writeValueAsString(entities);
+            return objectMapper.writeValueAsString(data);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
