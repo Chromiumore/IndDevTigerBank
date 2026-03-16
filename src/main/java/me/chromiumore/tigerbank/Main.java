@@ -1,6 +1,11 @@
 package me.chromiumore.tigerbank;
 
 import me.chromiumore.tigerbank.domain.Category;
+import me.chromiumore.tigerbank.domain.Operation;
+import me.chromiumore.tigerbank.domain.OperationType;
+import me.chromiumore.tigerbank.domain.param.BankAccountParam;
+import me.chromiumore.tigerbank.domain.param.CategoryParam;
+import me.chromiumore.tigerbank.domain.param.OperationParam;
 import me.chromiumore.tigerbank.repository.CategoryRepository;
 import me.chromiumore.tigerbank.service.AnalyticsService;
 import me.chromiumore.tigerbank.service.data.exportdata.ExportService;
@@ -12,6 +17,9 @@ import me.chromiumore.tigerbank.service.entity.OperationService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+
+import java.io.IOException;
+import java.time.LocalDate;
 
 @SpringBootApplication
 public class Main {
@@ -159,9 +167,11 @@ public class Main {
 //        }
 
         ImportService importService = context.getBean(ImportService.class);
-        importService.importFromYaml();
+        importService.importFromCsv();
 
         System.out.println(categoryService.get(0));
-        System.out.println(((Category) categoryService.get(1)).getName());
+        System.out.println(((Operation) operationService.get(2)).getAmount());
+        System.out.println(((Operation) operationService.get(2)).getDate());
+        System.out.println(((Operation) operationService.get(2)).getType());
     }
 }

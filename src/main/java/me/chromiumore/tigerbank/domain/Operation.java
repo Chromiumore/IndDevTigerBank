@@ -22,13 +22,4 @@ public class Operation extends BaseEntity {
     private String description;
     @Getter @Setter
     private int categoryId;
-
-    public Operation(OperationType type, int bankAccountId, double amount, int categoryId, String description) {
-        this.type = type;
-        this.bankAccountId = bankAccountId;
-        this.amount = amount;
-        this.categoryId = categoryId;
-        this.description = description;
-        this.date = LocalDate.now();
-    }
 }

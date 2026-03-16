@@ -8,6 +8,8 @@ import me.chromiumore.tigerbank.exception.CreateEntityException;
 import me.chromiumore.tigerbank.exception.UnsupportedParameterException;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 @Service
 public class OperationFactory implements EntityFactory {
     @Override
@@ -17,8 +19,24 @@ public class OperationFactory implements EntityFactory {
                     operationParam.getType(),
                     operationParam.getBankAccountId(),
                     operationParam.getAmount(),
-                    operationParam.getCategoryId(),
-                    operationParam.getDescription()
+                    LocalDate.now(),
+                    operationParam.getDescription(),
+                    operationParam.getCategoryId()
+            );
+        }
+
+        throw new UnsupportedParameterException();
+    }
+
+    public BaseEntity createEntityWithDate(EntityParam param, LocalDate date) throws CreateEntityException {
+        if (param instanceof OperationParam operationParam) {
+            return new Operation(
+                    operationParam.getType(),
+                    operationParam.getBankAccountId(),
+                    operationParam.getAmount(),
+                    date,
+                    operationParam.getDescription(),
+                    operationParam.getCategoryId()
             );
         }
 
