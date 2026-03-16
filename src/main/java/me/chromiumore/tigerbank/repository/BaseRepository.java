@@ -24,10 +24,8 @@ public abstract class BaseRepository<T extends BaseEntity> {
         return new HashMap<>(storage);
     }
 
-    public void update(int id, T entity) {
-        if (id != entity.getId()) {
-            throw new RuntimeException("ID сущности не совпадает c ключом!");
-        }
+    public void update(T entity) {
+        int id = entity.getId();
         storage.replace(id, entity);
     }
 
