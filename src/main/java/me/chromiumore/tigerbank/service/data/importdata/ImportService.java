@@ -5,6 +5,7 @@ import me.chromiumore.tigerbank.repository.CategoryRepository;
 import me.chromiumore.tigerbank.repository.OperationsRepository;
 import me.chromiumore.tigerbank.service.data.importdata.strategy.ImportStrategy;
 import me.chromiumore.tigerbank.service.data.importdata.strategy.JsonImportStrategy;
+import me.chromiumore.tigerbank.service.data.importdata.strategy.YamlImportStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,21 +19,27 @@ public class ImportService {
     OperationsRepository operationsRepository;
     @Autowired
     JsonImportStrategy jsonStrategy;
+    @Autowired
+    YamlImportStrategy yamlStrategy;
 
     public void importFromJson() {
         importData(jsonStrategy);
     }
 
+    public void importFromYaml() {
+        importData(yamlStrategy);
+    }
+
     private void importData(ImportStrategy strategy) {
-        strategy.setFileName("accounts_export.json");
+        strategy.setFileName("accounts_export");
         strategy.setRepository(accountRepository);
         strategy.saveFromFile();
 
-        strategy.setFileName("categories_export.json");
+        strategy.setFileName("categories_export");
         strategy.setRepository(categoryRepository);
         strategy.saveFromFile();
 
-        strategy.setFileName("operations_export.json");
+        strategy.setFileName("operations_export");
         strategy.setRepository(operationsRepository);
         strategy.saveFromFile();
     }

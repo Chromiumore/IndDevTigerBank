@@ -159,9 +159,9 @@ public class Main {
 //        }
 
         ImportService importService = context.getBean(ImportService.class);
-        importService.importFromJson();
+        importService.importFromYaml();
 
         System.out.println(categoryService.get(0));
-        System.out.println(((Category) categoryService.get(2)).getName());
+        System.out.println(((Category) categoryService.get(1)).getName());
     }
 }

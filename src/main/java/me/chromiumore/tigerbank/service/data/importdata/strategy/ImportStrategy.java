@@ -13,6 +13,8 @@ public abstract class ImportStrategy {
 
     protected abstract Map<Integer, BaseEntity> convertData();
 
+    protected abstract String getFileExtension();
+
     public void saveFromFile() {
         Map<Integer, BaseEntity> data = convertData();
         repository.setStorage(data);

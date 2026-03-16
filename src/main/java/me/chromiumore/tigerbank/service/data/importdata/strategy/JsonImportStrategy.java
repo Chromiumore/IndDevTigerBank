@@ -30,7 +30,7 @@ public class JsonImportStrategy extends ImportStrategy {
         Map<Integer, ? extends BaseEntity> data = new HashMap<>();
 
         try {
-            Path path = Paths.get("./target/" +  fileName);
+            Path path = Paths.get("./target/" +  fileName + getFileExtension());
 
             String content = Files.readString(path);
             if (repository instanceof AccountRepository) {
@@ -56,5 +56,10 @@ public class JsonImportStrategy extends ImportStrategy {
         }
 
         return (Map<Integer, BaseEntity>) data;
+    }
+
+    @Override
+    protected String getFileExtension() {
+        return ".json";
     }
 }
