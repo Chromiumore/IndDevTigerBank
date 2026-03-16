@@ -12,7 +12,6 @@ public class OperationParam extends EntityParam {
     private OperationType type;
     private int bankAccountId;
     private double amount;
-    private LocalDate date;
     private String description;
     private int categoryId;
 
