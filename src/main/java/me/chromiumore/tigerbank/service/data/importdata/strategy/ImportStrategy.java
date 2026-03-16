@@ -8,7 +8,7 @@ import java.util.Map;
 
 @Setter
 public abstract class ImportStrategy {
-    protected String filePath;
+    protected String fileName;
     protected BaseRepository repository;
 
     protected abstract Map<Integer, BaseEntity> convertData();

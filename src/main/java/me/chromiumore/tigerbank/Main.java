@@ -1,15 +1,10 @@
 package me.chromiumore.tigerbank;
 
-import me.chromiumore.tigerbank.domain.*;
-import me.chromiumore.tigerbank.domain.param.BankAccountParam;
-import me.chromiumore.tigerbank.domain.param.CategoryParam;
-import me.chromiumore.tigerbank.domain.param.OperationParam;
-import me.chromiumore.tigerbank.repository.AccountRepository;
+import me.chromiumore.tigerbank.domain.Category;
 import me.chromiumore.tigerbank.repository.CategoryRepository;
-import me.chromiumore.tigerbank.repository.OperationsRepository;
 import me.chromiumore.tigerbank.service.AnalyticsService;
 import me.chromiumore.tigerbank.service.data.exportdata.ExportService;
-import me.chromiumore.tigerbank.service.data.importdata.strategy.ImportStrategy;
+import me.chromiumore.tigerbank.service.data.importdata.ImportService;
 import me.chromiumore.tigerbank.service.data.importdata.strategy.JsonImportStrategy;
 import me.chromiumore.tigerbank.service.entity.BankAccountService;
 import me.chromiumore.tigerbank.service.entity.CategoryService;
@@ -17,9 +12,6 @@ import me.chromiumore.tigerbank.service.entity.OperationService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-
-import java.io.IOException;
-import java.time.LocalDate;
 
 @SpringBootApplication
 public class Main {
@@ -166,11 +158,10 @@ public class Main {
 //            System.out.println("Ошибка записи данных в формате yaml");
 //        }
 
-        JsonImportStrategy jsonImportStrategy = new JsonImportStrategy();
-        jsonImportStrategy.setFilePath("C:\\Dev\\repos\\IndDev\\IndDevTigerBank\\target\\categories_export.json");
-        jsonImportStrategy.setRepository(context.getBean(CategoryRepository.class));
-        jsonImportStrategy.saveFromFile();
+        ImportService importService = context.getBean(ImportService.class);
+        importService.importFromJson();
 
         System.out.println(categoryService.get(0));
+        System.out.println(((Category) categoryService.get(2)).getName());
     }
 }
