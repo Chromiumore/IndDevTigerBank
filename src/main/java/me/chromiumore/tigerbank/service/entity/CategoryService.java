@@ -1,7 +1,5 @@
 package me.chromiumore.tigerbank.service.entity;
 
-import lombok.Getter;
-import lombok.Setter;
 import me.chromiumore.tigerbank.domain.BaseEntity;
 import me.chromiumore.tigerbank.domain.Category;
 import me.chromiumore.tigerbank.domain.param.EntityParam;
@@ -19,10 +17,9 @@ public class CategoryService implements EntityService {
 
 
     @Override
-    public BaseEntity create(EntityParam param) {
+    public int create(EntityParam param) {
         Category category = (Category) factory.createEntity(param);
-        repository.add(category);
-        return category;
+        return repository.add(category);
     }
 
     @Override

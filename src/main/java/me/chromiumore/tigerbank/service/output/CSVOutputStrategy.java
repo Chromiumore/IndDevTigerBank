@@ -47,11 +47,11 @@ public class CSVOutputStrategy extends OutputStrategy {
                 int id = entry.getKey();
                 sb.append(id).append(",")
                         .append(operation.getType()).append(",")
-                        .append(operation.getBankAccount()).append(",")
+                        .append(operation.getBankAccountId()).append(",")
                         .append(operation.getAmount()).append(",")
                         .append(operation.getDate()).append(",")
                         .append(operation.getDescription()).append(",")
-                        .append(operation.getCategory()).append("\n");
+                        .append(operation.getCategoryId()).append("\n");
             }
         }
 

@@ -15,9 +15,9 @@ public class OperationFactory implements EntityFactory {
         if (param instanceof OperationParam operationParam) {
             return new Operation(
                     operationParam.getType(),
-                    operationParam.getBankAccount(),
+                    operationParam.getBankAccountId(),
                     operationParam.getAmount(),
-                    operationParam.getCategory(),
+                    operationParam.getCategoryId(),
                     operationParam.getDescription()
             );
         }

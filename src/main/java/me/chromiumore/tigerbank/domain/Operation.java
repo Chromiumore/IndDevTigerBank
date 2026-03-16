@@ -9,7 +9,7 @@ public class Operation extends BaseEntity {
     @Getter @Setter
     private OperationType type;
     @Getter @Setter
-    private BankAccount bankAccount;
+    private int bankAccountId;
     @Getter @Setter
     private double amount;
     @Getter @Setter
@@ -17,13 +17,13 @@ public class Operation extends BaseEntity {
     @Getter @Setter
     private String description;
     @Getter @Setter
-    private Category category;
+    private int categoryId;
 
-    public Operation(OperationType type, BankAccount bankAccount, double amount, Category category, String description) {
+    public Operation(OperationType type, int bankAccountId, double amount, int categoryId, String description) {
         this.type = type;
-        this.bankAccount = bankAccount;
+        this.bankAccountId = bankAccountId;
         this.amount = amount;
-        this.category = category;
+        this.categoryId = categoryId;
         this.description = description;
         this.date = LocalDate.now();
     }

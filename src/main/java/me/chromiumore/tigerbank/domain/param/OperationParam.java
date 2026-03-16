@@ -2,7 +2,6 @@ package me.chromiumore.tigerbank.domain.param;
 
 import lombok.Getter;
 import lombok.Setter;
-import me.chromiumore.tigerbank.domain.BankAccount;
 import me.chromiumore.tigerbank.domain.Category;
 import me.chromiumore.tigerbank.domain.OperationType;
 
@@ -11,18 +10,18 @@ import java.time.LocalDate;
 @Getter @Setter
 public class OperationParam extends EntityParam {
     private OperationType type;
-    private BankAccount bankAccount;
+    private int bankAccountId;
     private double amount;
     private LocalDate date;
     private String description;
-    private Category category;
+    private int categoryId;
 
-    public OperationParam(OperationType type, BankAccount bankAccount, double amount, Category category, String description) {
+    public OperationParam(OperationType type, int bankAccountId, double amount, int categoryId, String description) {
         super(EntityType.OPERATION);
         this.type = type;
-        this.bankAccount = bankAccount;
+        this.bankAccountId = bankAccountId;
         this.amount = amount;
-        this.category = category;
+        this.categoryId = categoryId;
         this.description = description;
     }
 }

@@ -34,109 +34,109 @@ public class Main {
         AnalyticsService analyticsService = context.getBean(AnalyticsService.class);
         ExportService exportService = context.getBean(ExportService.class);
 
-        BankAccount account1 =  (BankAccount) accountService.create(
+        int accountId1 =   accountService.create(
                 new BankAccountParam(
                         "Основной счет",
                         50000
                 ));
-        BankAccount account2 = (BankAccount) accountService.create(
+        int accountId2 = accountService.create(
                 new BankAccountParam(
                         "Сберегательный",
                         100000
                 ));
-        BankAccount account3 = (BankAccount) accountService.create(
+        int accountId3 = accountService.create(
                 new BankAccountParam(
                         "Наличные",
                         15000
                 ));
 
 
-        Category categoryCafe = (Category) categoryService.create(
+        int categoryCafeId = categoryService.create(
                 new CategoryParam(
                         OperationType.EXPENSE,
                         "Кафе"
                 ));
-        Category categoryHealth = (Category) categoryService.create(
+        int categoryHealthId = categoryService.create(
                 new CategoryParam(
                         OperationType.EXPENSE,
                         "Здоровье"
                 ));
-        Category categoryTransport = (Category) categoryService.create(
+        int categoryTransportId = categoryService.create(
                 new CategoryParam(
                         OperationType.EXPENSE,
                         "Транспорт"
                 ));
-        Category categoryProducts = (Category) categoryService.create(
+        int categoryProductsId = categoryService.create(
                 new CategoryParam(
                         OperationType.EXPENSE,
                         "Продукты"
                 ));
-        Category categorySalary = (Category) categoryService.create(
+        int categorySalaryId = categoryService.create(
                 new CategoryParam(
                         OperationType.INCOME,
                         "Зарплата"
                 ));
-        Category categoryCashback = (Category) categoryService.create(
+        int categoryCashbackId = categoryService.create(
                 new CategoryParam(
                         OperationType.INCOME,
                         "Кэшбэк"
                 ));
-        Category categoryGift = (Category) categoryService.create(
+        int categoryGiftId = categoryService.create(
                 new CategoryParam(
                         OperationType.INCOME,
                         "Подарки"
                 ));
 
 
-        Operation operation1 = (Operation) operationService.create(
+        int operationId1 = operationService.create(
                 new OperationParam(
                         OperationType.INCOME,
-                        account1,
+                        accountId1,
                         75000,
-                        categorySalary,
+                        categorySalaryId,
                         "Зарплата за январь"
         ));
-        account1.deposit(75000);
+        accountService.deposit(accountId1, 75000);
 
-        Operation operation2 = (Operation) operationService.create(
+        int operationId2 = operationService.create(
                 new OperationParam(
                         OperationType.EXPENSE,
-                        account1,
+                        accountId1,
                         1500,
-                        categoryCafe,
+                        categoryCafeId,
                         "Обед в кафе"
         ));
-        account1.withdraw(1500);
+        accountService.withdraw(accountId1, 1500);
 
-        Operation operation3 = (Operation) operationService.create(
+        int operationId3 = operationService.create(
                 new OperationParam(
                         OperationType.EXPENSE,
-                        account1,
+                        accountId1,
                         3500,
-                        categoryProducts,
+                        categoryProductsId,
                         "Продукты на неделю"
         ));
-        account1.withdraw(3500);
+        accountService.withdraw(accountId1, 3500);
 
-        Operation operation4 = (Operation) operationService.create(
+        int operationId4 = operationService.create(
                 new OperationParam(
                         OperationType.INCOME,
-                        account2,
+                        accountId2,
                         5000,
-                        categoryCashback,
+                        categoryCashbackId,
                         "Кэшбэк за покупки"
         ));
-        account2.deposit(5000);
+        accountService.deposit(accountId2, 5000);
 
-        Operation operation5 = (Operation) operationService.create(
+        int operationId5 = operationService.create(
                 new OperationParam(
                         OperationType.EXPENSE,
-                        account3,
+                        accountId3,
                         1000,
-                        categoryTransport,
+                        categoryTransportId,
                         "Проездной на месяц"
         ));
-        account3.withdraw(1000);
+        accountService.withdraw(accountId3, 1000);
 
 
         System.out.println(analyticsService.getExpenseByCategory(

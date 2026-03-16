@@ -16,10 +16,9 @@ public class BankAccountService implements EntityService {
     BankAccountFactory factory;
 
     @Override
-    public BaseEntity create(EntityParam param) {
+    public int create(EntityParam param) {
         BankAccount account = (BankAccount) factory.createEntity(param);
-        repository.add(account);
-        return account;
+        return repository.add(account);
     }
 
     @Override
@@ -35,5 +34,15 @@ public class BankAccountService implements EntityService {
     @Override
     public void delete(int id) {
         repository.remove(id);
+    }
+
+    public void deposit(int id, double amount) {
+        BankAccount account = (BankAccount) repository.get(id);
+        account.deposit(amount);
+    }
+
+    public void withdraw(int id, double amount) {
+        BankAccount account = (BankAccount) repository.get(id);
+        account.withdraw(amount);
     }
 }

@@ -16,10 +16,9 @@ public class OperationService implements EntityService {
     private OperationFactory factory;
 
     @Override
-    public BaseEntity create(EntityParam param) {
+    public int create(EntityParam param) {
         Operation operation = (Operation) factory.createEntity(param);
-        repository.add(operation);
-        return operation;
+        return repository.add(operation);
     }
 
     @Override

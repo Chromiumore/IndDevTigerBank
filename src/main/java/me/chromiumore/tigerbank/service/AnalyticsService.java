@@ -52,7 +52,7 @@ public class AnalyticsService {
                     !operation.getDate().isBefore(startDate) &&
                     !operation.getDate().isAfter(endDate)) {
 
-                Category category = operation.getCategory();
+                Category category = (Category) categoryRepository.get(operation.getCategoryId());
                 if (category != null) {
                     String categoryName = category.getName();
                     incomeByCategory.merge(categoryName, operation.getAmount(), Double::sum);
@@ -72,7 +72,7 @@ public class AnalyticsService {
                     !operation.getDate().isBefore(startDate) &&
                     !operation.getDate().isAfter(endDate)) {
 
-                Category category = operation.getCategory();
+                Category category = (Category) categoryRepository.get(operation.getCategoryId());
                 if (category != null) {
                     String categoryName = category.getName();
                     expenseByCategory.merge(categoryName, operation.getAmount(), Double::sum);
