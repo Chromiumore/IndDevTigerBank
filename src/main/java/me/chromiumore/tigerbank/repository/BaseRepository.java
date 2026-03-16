@@ -1,11 +1,13 @@
 package me.chromiumore.tigerbank.repository;
 
+import lombok.Setter;
 import me.chromiumore.tigerbank.domain.BaseEntity;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public abstract class BaseRepository {
+    @Setter
     protected Map<Integer, BaseEntity> storage;
 
     public BaseRepository() {
@@ -32,6 +34,10 @@ public abstract class BaseRepository {
 
     public void remove(int id) {
         storage.remove(id);
+    }
+
+    public void clear() {
+        storage.clear();
     }
 
     public boolean contains(int id) {
