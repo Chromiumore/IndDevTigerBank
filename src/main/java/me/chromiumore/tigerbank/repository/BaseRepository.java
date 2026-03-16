@@ -12,8 +12,10 @@ public abstract class BaseRepository {
         storage = new HashMap<>();
     }
 
-    public void add(BaseEntity entity) {
-        storage.put(getId(), entity);
+    public int add(BaseEntity entity) {
+        int id = getId();
+        storage.put(id, entity);
+        return id;
     };
 
     public BaseEntity get(int id) {
@@ -24,8 +26,7 @@ public abstract class BaseRepository {
         return new HashMap<>(storage);
     }
 
-    public void update(BaseEntity entity) {
-        int id = getId();
+    public void update(int id, BaseEntity entity) {
         storage.replace(id, entity);
     }
 

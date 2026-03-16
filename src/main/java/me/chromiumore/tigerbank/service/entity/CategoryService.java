@@ -1,4 +1,4 @@
-package me.chromiumore.tigerbank.service;
+package me.chromiumore.tigerbank.service.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-@Getter @Setter
 public class CategoryService implements EntityService {
     @Autowired
     private CategoryRepository repository;
@@ -20,9 +19,10 @@ public class CategoryService implements EntityService {
 
 
     @Override
-    public void create(EntityParam param) {
+    public BaseEntity create(EntityParam param) {
         Category category = (Category) factory.createEntity(param);
         repository.add(category);
+        return category;
     }
 
     @Override
@@ -31,8 +31,8 @@ public class CategoryService implements EntityService {
     }
 
     @Override
-    public void update(BaseEntity entity) {
-        repository.update((Category) entity);
+    public void update(int id, BaseEntity entity) {
+        repository.update(id, (Category) entity);
     }
 
     @Override

@@ -1,11 +1,11 @@
-package me.chromiumore.tigerbank.service;
+package me.chromiumore.tigerbank.service.entity;
 
 import me.chromiumore.tigerbank.domain.BaseEntity;
 import me.chromiumore.tigerbank.domain.param.EntityParam;
 
 public interface EntityService {
-    void create(EntityParam param);
+    BaseEntity create(EntityParam param);
     BaseEntity get(int id);
-    void update(BaseEntity entity);
+    void update(int id, BaseEntity entity);
     void delete(int id);
 }

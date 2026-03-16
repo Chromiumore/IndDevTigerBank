@@ -12,6 +12,9 @@ import me.chromiumore.tigerbank.repository.CategoryRepository;
 import me.chromiumore.tigerbank.repository.OperationsRepository;
 import me.chromiumore.tigerbank.service.AnalyticsService;
 import me.chromiumore.tigerbank.service.ExportService;
+import me.chromiumore.tigerbank.service.entity.BankAccountService;
+import me.chromiumore.tigerbank.service.entity.CategoryService;
+import me.chromiumore.tigerbank.service.entity.OperationService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -24,82 +27,68 @@ public class Main {
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(Main.class, args);
 
-        AccountRepository accountRepository = context.getBean(AccountRepository.class);
-        CategoryRepository categoryRepository = context.getBean(CategoryRepository.class);
-        OperationsRepository operationsRepository = context.getBean(OperationsRepository.class);
-
-        BankAccountFactory accountFactory = context.getBean(BankAccountFactory.class);
-        CategoryFactory categoryFactory = context.getBean(CategoryFactory.class);
-        OperationFactory operationFactory = context.getBean(OperationFactory.class);
+        BankAccountService accountService = context.getBean(BankAccountService.class);
+        CategoryService categoryService = context.getBean(CategoryService.class);
+        OperationService operationService = context.getBean(OperationService.class);
 
         AnalyticsService analyticsService = context.getBean(AnalyticsService.class);
         ExportService exportService = context.getBean(ExportService.class);
 
-        BankAccount account1 = (BankAccount) accountFactory.createEntity(
+        BankAccount account1 =  (BankAccount) accountService.create(
                 new BankAccountParam(
                         "Основной счет",
                         50000
                 ));
-        BankAccount account2 = (BankAccount) accountFactory.createEntity(
+        BankAccount account2 = (BankAccount) accountService.create(
                 new BankAccountParam(
                         "Сберегательный",
                         100000
                 ));
-        BankAccount account3 = (BankAccount) accountFactory.createEntity(
+        BankAccount account3 = (BankAccount) accountService.create(
                 new BankAccountParam(
                         "Наличные",
                         15000
                 ));
 
-        Category categoryCafe = (Category) categoryFactory.createEntity(
+
+        Category categoryCafe = (Category) categoryService.create(
                 new CategoryParam(
                         OperationType.EXPENSE,
                         "Кафе"
                 ));
-        Category categoryHealth = (Category) categoryFactory.createEntity(
+        Category categoryHealth = (Category) categoryService.create(
                 new CategoryParam(
                         OperationType.EXPENSE,
                         "Здоровье"
                 ));
-        Category categoryTransport = (Category) categoryFactory.createEntity(
+        Category categoryTransport = (Category) categoryService.create(
                 new CategoryParam(
                         OperationType.EXPENSE,
                         "Транспорт"
                 ));
-        Category categoryProducts = (Category) categoryFactory.createEntity(
+        Category categoryProducts = (Category) categoryService.create(
                 new CategoryParam(
                         OperationType.EXPENSE,
                         "Продукты"
                 ));
-        Category categorySalary = (Category) categoryFactory.createEntity(
+        Category categorySalary = (Category) categoryService.create(
                 new CategoryParam(
                         OperationType.INCOME,
                         "Зарплата"
                 ));
-        Category categoryCashback = (Category) categoryFactory.createEntity(
+        Category categoryCashback = (Category) categoryService.create(
                 new CategoryParam(
                         OperationType.INCOME,
                         "Кэшбэк"
                 ));
-        Category categoryGift = (Category) categoryFactory.createEntity(
+        Category categoryGift = (Category) categoryService.create(
                 new CategoryParam(
                         OperationType.INCOME,
                         "Подарки"
                 ));
 
-        accountRepository.add(account1);
-        accountRepository.add(account2);
-        accountRepository.add(account3);
 
-        categoryRepository.add(categoryCafe);
-        categoryRepository.add(categoryHealth);
-        categoryRepository.add(categoryTransport);
-        categoryRepository.add(categoryProducts);
-        categoryRepository.add(categorySalary);
-        categoryRepository.add(categoryCashback);
-        categoryRepository.add(categoryGift);
-
-        Operation operation1 = (Operation) operationFactory.createEntity(
+        Operation operation1 = (Operation) operationService.create(
                 new OperationParam(
                         OperationType.INCOME,
                         account1,
@@ -109,7 +98,7 @@ public class Main {
         ));
         account1.deposit(75000);
 
-        Operation operation2 = (Operation) operationFactory.createEntity(
+        Operation operation2 = (Operation) operationService.create(
                 new OperationParam(
                         OperationType.EXPENSE,
                         account1,
@@ -119,7 +108,7 @@ public class Main {
         ));
         account1.withdraw(1500);
 
-        Operation operation3 = (Operation) operationFactory.createEntity(
+        Operation operation3 = (Operation) operationService.create(
                 new OperationParam(
                         OperationType.EXPENSE,
                         account1,
@@ -129,7 +118,7 @@ public class Main {
         ));
         account1.withdraw(3500);
 
-        Operation operation4 = (Operation) operationFactory.createEntity(
+        Operation operation4 = (Operation) operationService.create(
                 new OperationParam(
                         OperationType.INCOME,
                         account2,
@@ -139,7 +128,7 @@ public class Main {
         ));
         account2.deposit(5000);
 
-        Operation operation5 = (Operation) operationFactory.createEntity(
+        Operation operation5 = (Operation) operationService.create(
                 new OperationParam(
                         OperationType.EXPENSE,
                         account3,
@@ -149,11 +138,6 @@ public class Main {
         ));
         account3.withdraw(1000);
 
-        operationsRepository.add(operation1);
-        operationsRepository.add(operation2);
-        operationsRepository.add(operation3);
-        operationsRepository.add(operation4);
-        operationsRepository.add(operation5);
 
         System.out.println(analyticsService.getExpenseByCategory(
                 LocalDate.of(2020, 12, 1),
