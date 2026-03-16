@@ -1,4 +1,4 @@
-package me.chromiumore.tigerbank.service.output;
+package me.chromiumore.tigerbank.service.data.exportdata.output;
 
 import me.chromiumore.tigerbank.domain.BaseEntity;
 

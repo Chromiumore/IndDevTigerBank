@@ -1,18 +1,15 @@
-package me.chromiumore.tigerbank.service.output;
+package me.chromiumore.tigerbank.service.data.exportdata.output;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.fasterxml.jackson.datatype.jsr310.JSR310Module;
-import me.chromiumore.tigerbank.domain.BaseEntity;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Component
-public class JsonOutputStrategy extends OutputStrategy{
-    public JsonOutputStrategy() {
-        super(".json");
+public class YamlOutputStrategy extends OutputStrategy {
+    public YamlOutputStrategy() {
+        super(".yaml");
     }
 
     @Override
@@ -21,7 +18,7 @@ public class JsonOutputStrategy extends OutputStrategy{
             return "";
         }
 
-        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());
         objectMapper.registerModule(new JSR310Module());
         try {
             return objectMapper.writeValueAsString(data);
