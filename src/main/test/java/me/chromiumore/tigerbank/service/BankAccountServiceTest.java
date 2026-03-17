@@ -75,7 +75,7 @@ public class BankAccountServiceTest {
 
         BankAccount account = (BankAccount) entity;
         assertEquals(param.getName(), account.getName());
-        assertEquals(param.getName(), account.getName());
+        assertEquals(param.getBalance(), account.getBalance());
     }
 
     @Test
