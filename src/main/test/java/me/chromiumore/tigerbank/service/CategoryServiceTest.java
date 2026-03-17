@@ -18,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 @SpringBootTest
+@DisplayName("Работа сервиса категорий")
 public class CategoryServiceTest {
     @Autowired
     private CategoryService service;
