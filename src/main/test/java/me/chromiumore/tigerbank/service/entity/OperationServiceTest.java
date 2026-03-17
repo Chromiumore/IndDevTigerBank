@@ -1,4 +1,4 @@
-package me.chromiumore.tigerbank.service;
+package me.chromiumore.tigerbank.service.entity;
 
 import me.chromiumore.tigerbank.domain.BankAccount;
 import me.chromiumore.tigerbank.domain.BaseEntity;
@@ -12,10 +12,6 @@ import me.chromiumore.tigerbank.factory.OperationFactory;
 import me.chromiumore.tigerbank.repository.AccountRepository;
 import me.chromiumore.tigerbank.repository.CategoryRepository;
 import me.chromiumore.tigerbank.repository.OperationsRepository;
-import me.chromiumore.tigerbank.service.entity.BankAccountService;
-import me.chromiumore.tigerbank.service.entity.CategoryService;
-import me.chromiumore.tigerbank.service.entity.OperationService;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

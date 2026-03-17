@@ -1,11 +1,10 @@
-package me.chromiumore.tigerbank.service;
+package me.chromiumore.tigerbank.service.entity;
 
 import me.chromiumore.tigerbank.domain.BaseEntity;
 import me.chromiumore.tigerbank.domain.Category;
 import me.chromiumore.tigerbank.domain.OperationType;
 import me.chromiumore.tigerbank.domain.param.CategoryParam;
 import me.chromiumore.tigerbank.repository.CategoryRepository;
-import me.chromiumore.tigerbank.service.entity.CategoryService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

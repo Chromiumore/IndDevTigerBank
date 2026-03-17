@@ -1,9 +1,12 @@
 package me.chromiumore.tigerbank.service.data.importdata;
 
+import lombok.Getter;
+import lombok.Setter;
 import me.chromiumore.tigerbank.aop.LogExecutionTime;
 import me.chromiumore.tigerbank.repository.AccountRepository;
 import me.chromiumore.tigerbank.repository.CategoryRepository;
 import me.chromiumore.tigerbank.repository.OperationsRepository;
+import me.chromiumore.tigerbank.service.data.DataService;
 import me.chromiumore.tigerbank.service.data.importdata.strategy.CsvImportStrategy;
 import me.chromiumore.tigerbank.service.data.importdata.strategy.ImportStrategy;
 import me.chromiumore.tigerbank.service.data.importdata.strategy.JsonImportStrategy;
@@ -11,8 +14,11 @@ import me.chromiumore.tigerbank.service.data.importdata.strategy.YamlImportStrat
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 @Service
-public class ImportService {
+public class ImportService extends DataService {
     @Autowired
     AccountRepository accountRepository;
     @Autowired
@@ -42,15 +48,15 @@ public class ImportService {
     }
 
     private void importData(ImportStrategy strategy) {
-        strategy.setFileName("accounts_export");
+        strategy.setFileName(accountsExportName);
         strategy.setRepository(accountRepository);
         strategy.saveFromFile();
 
-        strategy.setFileName("categories_export");
+        strategy.setFileName(categoriesExportName);
         strategy.setRepository(categoryRepository);
         strategy.saveFromFile();
 
-        strategy.setFileName("operations_export");
+        strategy.setFileName(operationsExportName);
         strategy.setRepository(operationsRepository);
         strategy.saveFromFile();
     }

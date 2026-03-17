@@ -31,7 +31,7 @@ public class YamlImportStrategy extends ImportStrategy {
         Map<Integer, ? extends BaseEntity> data = new HashMap<>();
 
         try {
-            Path path = Paths.get("./target/" +  fileName + getFileExtension());
+            Path path = Paths.get(getFullPath());
 
             String content = Files.readString(path);
             if (repository instanceof AccountRepository) {
@@ -60,7 +60,12 @@ public class YamlImportStrategy extends ImportStrategy {
     }
 
     @Override
-    protected String getFileExtension() {
+    public String getFileExtension() {
         return ".yaml";
+    }
+
+    @Override
+    public String getFullPath() {
+        return "./target/" +  fileName + getFileExtension();
     }
 }

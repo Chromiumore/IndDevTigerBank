@@ -1,9 +1,12 @@
 package me.chromiumore.tigerbank.service.data.exportdata;
 
+import lombok.Getter;
+import lombok.Setter;
 import me.chromiumore.tigerbank.aop.LogExecutionTime;
 import me.chromiumore.tigerbank.repository.AccountRepository;
 import me.chromiumore.tigerbank.repository.CategoryRepository;
 import me.chromiumore.tigerbank.repository.OperationsRepository;
+import me.chromiumore.tigerbank.service.data.DataService;
 import me.chromiumore.tigerbank.service.data.exportdata.output.CSVOutputStrategy;
 import me.chromiumore.tigerbank.service.data.exportdata.output.JsonOutputStrategy;
 import me.chromiumore.tigerbank.service.data.exportdata.output.OutputStrategy;
@@ -14,8 +17,7 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 
 @Service
-public class ExportService {
-
+public class ExportService extends DataService {
     private final AccountRepository accountRepository;
     private final CategoryRepository categoryRepository;
     private final OperationsRepository operationsRepository;
@@ -52,15 +54,15 @@ public class ExportService {
 
     private void exportData(OutputStrategy strategy) throws IOException {
         strategy.setData(accountRepository.getAll());
-        strategy.setFileName("accounts_export");
+        strategy.setFileName(accountsExportName);
         strategy.writeFile();
 
         strategy.setData(categoryRepository.getAll());
-        strategy.setFileName("categories_export");
+        strategy.setFileName(categoriesExportName);
         strategy.writeFile();
 
         strategy.setData(operationsRepository.getAll());
-        strategy.setFileName("operations_export");
+        strategy.setFileName(operationsExportName);
         strategy.writeFile();
     }
 }

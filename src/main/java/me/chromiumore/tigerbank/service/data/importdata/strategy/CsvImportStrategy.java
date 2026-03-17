@@ -37,7 +37,7 @@ public class CsvImportStrategy extends ImportStrategy {
         Map<Integer, BaseEntity> data = new HashMap<>();
 
         try {
-            Path path = Paths.get("./target/" +  fileName + getFileExtension());
+            Path path = Paths.get(getFullPath());
 
             List<String> content = Files.readAllLines(path);
             if (content.isEmpty()) {
@@ -93,7 +93,12 @@ public class CsvImportStrategy extends ImportStrategy {
     }
 
     @Override
-    protected String getFileExtension() {
+    public String getFileExtension() {
         return ".csv";
+    }
+
+    @Override
+    public String getFullPath() {
+        return "./target/" +  fileName + getFileExtension();
     }
 }
