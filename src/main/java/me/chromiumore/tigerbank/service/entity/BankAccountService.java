@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class BankAccountService implements EntityService {
+public class BankAccountService implements EntityService, CreatingEntityService {
     @Autowired
     AccountRepository repository;
     @Autowired
@@ -34,15 +34,5 @@ public class BankAccountService implements EntityService {
     @Override
     public void delete(int id) {
         repository.remove(id);
-    }
-
-    public void deposit(int id, double amount) {
-        BankAccount account = (BankAccount) repository.get(id);
-        account.deposit(amount);
-    }
-
-    public void withdraw(int id, double amount) {
-        BankAccount account = (BankAccount) repository.get(id);
-        account.withdraw(amount);
     }
 }

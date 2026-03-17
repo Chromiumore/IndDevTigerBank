@@ -91,36 +91,4 @@ public class BankAccountServiceTest {
         assertNull(service.get(id));
         assertFalse(repository.contains(id));
     }
-
-    @Test
-    @DisplayName("Пополнение и списание")
-    public void depositAndWithdraw() {
-        BankAccountParam param = new BankAccountParam(
-                "AccountActions",
-                200
-        );
-
-        int id = service.create(param);
-
-        double toDeposit = 150.25;
-        double toWithdraw = 100;
-
-        service.deposit(id, toDeposit);
-        BankAccount account = (BankAccount) service.get(id);
-        assertEquals(param.getBalance() + toDeposit, account.getBalance());
-
-        service.withdraw(id, toWithdraw);
-        account = (BankAccount) service.get(id);
-        assertEquals(param.getBalance() + toDeposit - toWithdraw, account.getBalance());
-
-        assertThrows(RuntimeException.class, () -> {
-            service.deposit(id, -500);
-        });
-        assertThrows(RuntimeException.class, () -> {
-            service.withdraw(id, -500);
-        });
-        assertThrows(RuntimeException.class, () -> {
-            service.withdraw(id, 100000000);
-        });
-    }
 }

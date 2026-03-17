@@ -8,19 +8,11 @@ import me.chromiumore.tigerbank.domain.OperationType;
 import java.time.LocalDate;
 
 @Getter @Setter
-public class OperationParam extends EntityParam {
+public class OperationParam extends OperationNoTypeParam {
     private OperationType type;
-    private int bankAccountId;
-    private double amount;
-    private String description;
-    private int categoryId;
 
     public OperationParam(OperationType type, int bankAccountId, double amount, int categoryId, String description) {
-        super(EntityType.OPERATION);
+        super(bankAccountId, amount, categoryId, description);
         this.type = type;
-        this.bankAccountId = bankAccountId;
-        this.amount = amount;
-        this.categoryId = categoryId;
-        this.description = description;
     }
 }

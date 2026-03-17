@@ -2,7 +2,9 @@ package me.chromiumore.tigerbank.factory;
 
 import me.chromiumore.tigerbank.domain.BaseEntity;
 import me.chromiumore.tigerbank.domain.Operation;
+import me.chromiumore.tigerbank.domain.OperationType;
 import me.chromiumore.tigerbank.domain.param.EntityParam;
+import me.chromiumore.tigerbank.domain.param.OperationNoTypeParam;
 import me.chromiumore.tigerbank.domain.param.OperationParam;
 import me.chromiumore.tigerbank.exception.CreateEntityException;
 import me.chromiumore.tigerbank.exception.UnsupportedParameterException;
@@ -15,14 +17,7 @@ public class OperationFactory implements EntityFactory {
     @Override
     public BaseEntity createEntity(EntityParam param) throws CreateEntityException {
         if (param instanceof OperationParam operationParam) {
-            return new Operation(
-                    operationParam.getType(),
-                    operationParam.getBankAccountId(),
-                    operationParam.getAmount(),
-                    LocalDate.now(),
-                    operationParam.getDescription(),
-                    operationParam.getCategoryId()
-            );
+            return createEntityWithDate(operationParam, LocalDate.now());
         }
 
         throw new UnsupportedParameterException();
@@ -41,5 +36,27 @@ public class OperationFactory implements EntityFactory {
         }
 
         throw new UnsupportedParameterException();
+    }
+
+    public Operation createExpenseOperation(OperationNoTypeParam param) {
+        return new Operation(
+                OperationType.EXPENSE,
+                param.getBankAccountId(),
+                param.getAmount(),
+                LocalDate.now(),
+                param.getDescription(),
+                param.getCategoryId()
+        );
+    }
+
+    public Operation createIncomeOperation(OperationNoTypeParam param) {
+        return new Operation(
+                OperationType.INCOME,
+                param.getBankAccountId(),
+                param.getAmount(),
+                LocalDate.now(),
+                param.getDescription(),
+                param.getCategoryId()
+        );
     }
 }
