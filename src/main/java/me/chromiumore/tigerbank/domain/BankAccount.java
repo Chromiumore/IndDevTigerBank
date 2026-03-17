@@ -14,10 +14,16 @@ public class BankAccount extends BaseEntity{
     private double balance;
 
     public void deposit(double amount) {
+        if (amount <= 0) {
+            throw new RuntimeException("Сумма пополнения может быть только положительной");
+        }
         this.balance += amount;
     }
 
     public void withdraw(double amount) {
+        if (amount <= 0) {
+            throw new RuntimeException("Сумма списания может быть только положительной");
+        }
         if (amount > this.balance) {
             throw new RuntimeException("Недостаточно средств на счете");
         }
